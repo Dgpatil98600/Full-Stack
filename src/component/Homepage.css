@@ -1,0 +1,153 @@
+body, html {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f8fc;
+}
+
+.homepage {
+  padding-top: 0px;
+  font-family: Arial, sans-serif;
+  transition: filter 0.3s ease;
+}
+
+
+.navbar {
+  padding: 10px 20px;
+  background-color: rgb(131, 33, 33);
+  margin-bottom: 20px;
+
+  width : 100vw;
+  position: fixed;
+  top : 0px
+}
+
+.hero-section {
+  margin: 60px 0;
+  padding: 20px;
+  text-align: center;
+  
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+.hero-description {
+  font-size: 1rem;
+  color: #00e7d4;
+  margin-bottom: 40px;
+}
+
+.designs-section {
+  padding: 40px 0;
+}
+
+.design-card {
+  border: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.design-card:hover {
+  transform: scale(1.05);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.card-subtitle {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.modal-content {
+  padding: 20px;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-body {
+  padding: 20px 0;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+}
+/* Search Bar Styling */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  width: 60%;
+  max-width: 600px;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 50px 0 0 50px;
+  outline: none;
+  font-size: 16px;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.7);
+}
+
+.search-button {
+  background-color: #007bff;
+  border: none;
+  padding: 12px 20px;
+  color: white;
+  border-radius: 0 50px 50px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.search-button i {
+  font-size: 18px;
+}
+
+
+.blurred-background {
+  filter: blur(5px);
+  pointer-events: none; 
+  transition: filter 0.3s ease;
+}
+
+.modal.show {
+  filter: none;
+  pointer-events: auto;
+}
+

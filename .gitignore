@@ -1,0 +1,48 @@
+# Ignore environment variables
+.env
+
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Python cache
+__pycache__/
+
+# Ignore specific folders (frontend/static)
+js/
+css/
+uploads/
+
+# Dependency folders
+node_modules/
+venv/
+
+# Ignore specific files from project root
+.sbom.json
+eslint.config.js
+LICENSE-crypt-license.txt
+LICENSE-mongodb-browser.txt
+mongosh*
+rzp.csv
+s.js
+README
+THIRD_PARTY_NOTICES
+
+
+# Ignore editor/system files
+.vscode/
+.idea/
+.DS_Store
+
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
