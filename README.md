@@ -52,7 +52,6 @@ This project is a full-stack Inventory Management System built with React (front
 ### Security & Logging
 - JWT authentication for protected routes
 - Request and error logging for backend API
-
 ### Technology Stack & UI Libraries
 - **Frontend:** React, Tailwind CSS, Recharts (charts), react-to-print, jsPDF, remix-icons, react-icons, GSAP (animations), **react-toastify** (toasts for product/profile/notification actions)
 - **Backend:** Node.js, Express, MongoDB, Mongoose, JWT, Multer, Nodemailer, Twilio, Razorpay, **node-cron** (scheduled expiry/reorder notifications)
