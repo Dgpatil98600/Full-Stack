@@ -9,6 +9,7 @@ import YourBills from './component/YourBills'
 import Notifications from './component/Notifications'
 import Profile from './component/Profile'
 import Homepage from './component/Homepage'
+import ShopAnalysis from './component/ShopAnalysis'
 
 const routes = createRoutesFromChildren(
     <>
@@ -20,6 +21,7 @@ const routes = createRoutesFromChildren(
         <Route path="/bills" element={<UserProtectedWrapper><YourBills/></UserProtectedWrapper>} />
         <Route path="/notifications" element={<UserProtectedWrapper><Notifications/></UserProtectedWrapper>} />
         <Route path="/profile" element={<UserProtectedWrapper><Profile/></UserProtectedWrapper>} />
+        <Route path="/shop-analysis" element={<UserProtectedWrapper><ShopAnalysis/></UserProtectedWrapper>} />
     </>
 )
 

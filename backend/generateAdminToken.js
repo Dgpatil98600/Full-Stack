@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-dotenv.config({ path: '.env' });
+dotenv.config(); // no path needed
+
 
 const payload = { role: 'admin_cron_job' };
 const secret = process.env.JWT_SECRET;

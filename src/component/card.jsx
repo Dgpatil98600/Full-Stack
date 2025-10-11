@@ -15,6 +15,8 @@ const card = (props) => {
         navigate('/bills');
     }else if(props.title==="Product Analysis"){
       navigate('/product-analysis');
+    }else{
+      navigate('/shop-analysis');
     }
 };
 

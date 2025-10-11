@@ -31,15 +31,47 @@ This project is a full-stack Inventory Management System built with React (front
 - Dashboard with quick access to billing, inventory, analytics, and notifications
 - Charts powered by Recharts (BarChart, ResponsiveContainer, etc.)
 
+### Shop Analysis & Performance Metrics
+- Real-time financial metrics dashboard:
+  - Total Profit Tracking
+  - Current Stock Value Monitoring
+  - Live Turnover Analysis
+  - Potential Gain Calculations
+- Daily Sales & Profit Analysis:
+  - Interactive line chart visualization
+  - Month-wise sales and profit tracking
+  - Daily performance metrics with data points
+  - Customizable month selection (e.g., Jul-24, Aug-24, Sep-24)
+  - Visual indicators for daily performance
+  - Automatic updates when new bills are created
+- Data Visualization:
+  - Interactive line charts using Recharts
+  - Bullet points for daily metrics
+  - Smooth animations using Framer Motion
+- Filtering Capabilities:
+  - Month-wise data filtering
+  - Historical data comparison
+  - Custom date range selection
+
 ### Notifications
 - Real-time notifications for low stock and product expiry
 - View, filter, and delete notifications by type (reorder, expiry, all)
 - **Toast notifications** for user feedback on notification actions (using react-toastify)
 
-### AI Suggestions (Chat)
-- Built-in AI chat assistant UI for business/product suggestions based on sales history
-- **Note:** Currently, only the UI for AI chat is present. The full AI-powered process and backend integration may be implemented in the future.
-- Uses react-icons for chat UI (e.g., RiSendPlane2Fill)
+### AI-Powered Inventory Assistant (Chat)
+- Integration with Google's Gemini AI API for intelligent inventory analysis
+- Features:
+  - Real-time inventory data analysis
+  - Smart product recommendations
+  - Inventory optimization suggestions
+  - Natural language interactions about:
+    - Current stock levels
+    - Sales patterns
+    - Product performance
+    - Reorder recommendations
+  - Context-aware responses based on your inventory data
+  - Historical data analysis for better insights
+  - Customized suggestions for inventory management
 
 ### Payments
 - Razorpay integration for payment during registration (if enabled)
@@ -52,8 +84,9 @@ This project is a full-stack Inventory Management System built with React (front
 ### Security & Logging
 - JWT authentication for protected routes
 - Request and error logging for backend API
+
 ### Technology Stack & UI Libraries
-- **Frontend:** React, Tailwind CSS, Recharts (charts), react-to-print, jsPDF, remix-icons, react-icons, GSAP (animations), **react-toastify** (toasts for product/profile/notification actions)
+- **Frontend:** React, Tailwind CSS, Recharts (charts), react-to-print, jsPDF, remix-icons, react-icons, GSAP (animations), **react-toastify** (toasts for product/profile/notification actions), re-resizable,Framer
 - **Backend:** Node.js, Express, MongoDB, Mongoose, JWT, Multer, Nodemailer, Twilio, Razorpay, **node-cron** (scheduled expiry/reorder notifications)
 
 ---
@@ -64,11 +97,15 @@ This project is a full-stack Inventory Management System built with React (front
   - Inventory: Search/filter by name, display name, SKU, category
   - Bills: Filter by time period (today, week, month, year, all)
   - Product Analysis: Filter by time range and product category
+  - Shop Analysis : returns Inventory information and monthly sales & profit
   - Notifications: Filter by type (all, reorder, expiry)
+  - Profile : Show user Profile
 - **UI Libraries:**
   - **remix-icons:** Used for dashboard/profile icons
+  - **Framer** Motion Used for smooth animations
   - **react-icons:** Used in chat (e.g., RiSendPlane2Fill)
   - **Recharts:** Used for product analysis charts (BarChart, etc.)
+  - **re-resizable** for adjustable chat panel
   - **react-to-print:** Print bills
   - **jsPDF:** Save bills as PDF
   - **GSAP:** Animations in dashboard

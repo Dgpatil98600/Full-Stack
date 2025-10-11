@@ -8,11 +8,12 @@ const billSchema = new mongoose.Schema({
     items: [{
         productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
         productName: String,
-        quantity: Number,
-        price: Number,
-        total: Number,
-        actualPrice: Number,
-        sellingPrice: Number
+        displayName: { type: String, required: true },
+        quantity: { type: Number, required: true },
+        category: { type: String, required: true },
+        total: { type: Number, required: true },
+        actualPrice: { type: Number, required: true },
+        sellingPrice: { type: Number, required: true }
     }],
     grandTotal: { type: Number, required: true },
     netQuantity: { type: Number, required: true },

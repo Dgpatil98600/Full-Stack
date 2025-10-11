@@ -3,6 +3,7 @@ import axiosInstance from '../utils/axios';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend
 } from 'recharts';
+import axios from 'axios';
 
 
 const ranges = [
@@ -27,6 +28,7 @@ const ProductAnalysis = () => {
   const [categories, setCategories] = useState([]);
   const [profitCategory, setProfitCategory] = useState('all');
   const [salesCategory, setSalesCategory] = useState('all');
+  const [p, setP] = useState(0);
 
   useEffect(() => {
     axiosInstance.get('/api/product-analysis/categories')
@@ -101,7 +103,7 @@ const ProductAnalysis = () => {
           <>
             <div className="mb-8 text-2xl font-bold flex items-center gap-2">
               <span>Total Profit:</span>
-              <span className="text-green-600 text-3xl font-extrabold drop-shadow-lg">₹{Number(data.totalProfit).toLocaleString(undefined, { maximumFractionDigits: 2 })}</span>
+              <span className="text-green-600 text-3xl font-extrabold drop-shadow-lg">₹{data.totalProfit}</span>
             </div>
 
             <div className="flex flex-colflex-wrap lg:flex-nowrap gap-8">
