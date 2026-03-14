@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
 
 const API_BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:5000';
-const RAZORPAY_KEY_ID = import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_xxxxxxxxxx'; 
+const RAZORPAY_KEY_ID = import.meta.env.VITE_RAZORPAY_KEY_ID; 
 
 function loadRazorpayScript(src) {
   return new Promise((resolve) => {
@@ -204,19 +204,27 @@ const Registration = ({ setModalType }) => {
         description: 'Test Registration Fee',
         order_id: order.id,
         handler: async function (response) {
-          const verifyRes = await axios.post(`${API_BASE_URL}/api/razorpay/verify-payment`, {
-            razorpay_order_id: response.razorpay_order_id,
-            razorpay_payment_id: response.razorpay_payment_id,
-            razorpay_signature: response.razorpay_signature
-          });
-          if (verifyRes.data.success) {
-            setPaymentSuccess(true);
-            setErrorMessage('Payment successful! Registering...');
-            completeRegistration();
-          } else {
-            setErrorMessage('Payment verification failed.');
+          try {
+            console.log('Razorpay handler response:', response);
+            const verifyRes = await axios.post(`${API_BASE_URL}/api/razorpay/verify-payment`, {
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature
+            });
+            console.log('Verify payment response:', verifyRes.data);
+            if (verifyRes.data.success) {
+              setPaymentSuccess(true);
+              setErrorMessage('Payment successful! Registering...');
+              completeRegistration();
+            } else {
+              setErrorMessage(`Payment verification failed: ${verifyRes.data.error || 'Unknown'}`);
+            }
+          } catch (verifyErr) {
+            console.error('Error verifying payment:', verifyErr);
+            setErrorMessage(`Payment verification error: ${verifyErr.response?.data?.error || verifyErr.message}`);
+          } finally {
+            setPaymentLoading(false);
           }
-          setPaymentLoading(false);
         },
         prefill: {
           name: formData.username,
@@ -225,8 +233,47 @@ const Registration = ({ setModalType }) => {
         },
         theme: { color: '#3399cc' }
       };
+
+      // ensure razorpay key is configured
+      if (!RAZORPAY_KEY_ID) {
+        setErrorMessage('Razorpay key is not configured.');
+        setPaymentLoading(false);
+        return;
+      }
+
+      // add modal ondismiss option so it's available to the checkout
+      options.modal = {
+        ondismiss: function () {
+          setPaymentLoading(false);
+          setErrorMessage('Payment cancelled or closed.');
+        }
+      };
+
+      console.log('Opening Razorpay with options:', options);
       const rzp = new window.Razorpay(options);
-      rzp.open();
+
+      // handle failed payments so UI state is restored
+      rzp.on('payment.failed', function (response) {
+        console.error('Razorpay payment.failed payload:', response);
+        setPaymentLoading(false);
+        const msg = response?.error?.description || response?.error?.reason || 'Payment Failed';
+        setErrorMessage(`Payment Failed: ${msg}`);
+      });
+
+      // attach modal dismiss listener as fallback
+      rzp.on('modal.ondismiss', function () {
+        console.warn('Razorpay modal dismissed');
+        setPaymentLoading(false);
+        setErrorMessage('Payment cancelled or closed.');
+      });
+
+      try {
+        rzp.open();
+      } catch (openErr) {
+        console.error('Error opening Razorpay checkout:', openErr);
+        setPaymentLoading(false);
+        setErrorMessage(`Failed to open payment UI: ${openErr.message}`);
+      }
     } catch (err) {
       setErrorMessage('Failed to initiate payment.');
       setPaymentLoading(false);

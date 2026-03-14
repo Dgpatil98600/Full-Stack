@@ -72,7 +72,7 @@ router.get('/list', async (req, res) => {
         }).sort({ date: -1 });
 
         console.log('Found bills:', bills.length);
-        console.log('Sample bill:', bills.length > 0 ? bills[0] : 'No bills found');
+      
 
         res.status(200).json(bills);
     } catch (error) {

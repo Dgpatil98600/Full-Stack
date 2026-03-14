@@ -22,6 +22,8 @@ uploads/
 # Dependency folders
 node_modules/
 venv/
+backend/chatbot/rag/chroma
+backend/chatbot/rag/chroma_env
 
 # Ignore specific files from project root
 .sbom.json

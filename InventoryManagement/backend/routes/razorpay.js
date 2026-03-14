@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
 
@@ -9,7 +10,7 @@ router.post('/create-order', async (req, res) => {
     const { amount, currency = 'INR', receipt } = req.body;
     const razorpay = new Razorpay({
       key_id: process.env.RAZORPAY_KEY_ID,
-      key_secret: process.env.RAZORPAY_KEY_SECRET,
+      key_secret: process.env.RAZORPAY_SECRET,
     });
     const options = {
       amount: amount * 100, 
@@ -26,7 +27,7 @@ router.post('/create-order', async (req, res) => {
 
 router.post('/verify-payment', (req, res) => {
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
-  const key_secret = process.env.RAZORPAY_KEY_SECRET;
+  const key_secret = process.env.RAZORPAY_SECRET;
   const generated_signature = crypto
     .createHmac('sha256', key_secret)
     .update(razorpay_order_id + '|' + razorpay_payment_id)

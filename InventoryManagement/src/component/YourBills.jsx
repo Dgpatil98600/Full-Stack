@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const YourBills = () => {
     const [bills, setBills] = useState([]);
@@ -133,7 +133,9 @@ const YourBills = () => {
 
     return (
         <div className="min-h-screen bg-gray-100 p-6">
-
+            <Link to="/dashboard" className="text-blue-500 hover:underline">
+                <button className="bg-gray-600 text-white px-2 py-1 rounded hover:bg-gray-300">← Back to Dashboard</button>
+            </Link>
             <div className="max-w-7xl mx-auto mb-8">
                 <div className="flex justify-between items-center">
                     <h1 className="text-3xl font-bold text-gray-800 text-center flex-grow">

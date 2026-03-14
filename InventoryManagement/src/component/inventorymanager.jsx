@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axiosInstance from '../utils/axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 
 function InventoryManager() {
@@ -231,7 +232,10 @@ function InventoryManager() {
 
     return (
         <div className="p-6 font-sans">
-            <h1 className="text-2xl font-bold mb-4">Inventory Manager</h1>
+            <Link to="/dashboard" className="text-blue-500 hover:underline">
+                <button className="bg-gray-600 text-white px-2 py-1 rounded hover:bg-gray-300">← Back to Dashboard</button>
+            </Link>
+            <h1 className="text-2xl font-bold mb-4 text-center">Inventory Manager</h1>
 
 
             <div className="mb-6">
@@ -249,6 +253,10 @@ function InventoryManager() {
                 <h2 className="text-xl font-semibold mb-4">Product List</h2>
                 {Object.entries(groupedByCategory).map(([category, groups]) => {
                     const isAddingToThisCategory = addingToCategory === category;
+                    if (Object.keys.length === 0) {
+                        isAddingToThisCategory = true;
+                        
+                    }
 
                     return (
                         <div key={category} className="mb-8">

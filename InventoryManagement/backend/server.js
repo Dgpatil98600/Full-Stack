@@ -22,6 +22,7 @@ import profileRoutes from './routes/profile.js'
 import razorpayRoutes from './routes/razorpay.js';
 import shopanalysisRoutes from './routes/shopanalysis.js';
 import aiRoutes from './routes/ai.js';
+import chatRoute from './chatbot/routes.js';
 
 console.log('TWILIO_ACCOUNT_SID:', process.env.TWILIO_ACCOUNT_SID);
 
@@ -300,6 +301,7 @@ app.use('/api/profile', authenticate, profileRoutes);
 app.use('/api/razorpay', razorpayRoutes);
 app.use('/api/shop-analysis', authenticate, shopanalysisRoutes);
 app.use('/api/ai', authenticate, aiRoutes);
+app.use('/api/chatbot', authenticate, chatRoute);
 
 let lastBillCreationTime = null;
 

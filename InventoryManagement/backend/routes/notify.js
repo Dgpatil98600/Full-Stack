@@ -105,7 +105,10 @@ router.get('/notify', authenticate, async (req, res) => {
         
         for (const product of products) {
             const daysLeft = getDaysBetween(now, product.expirationDate);
-            
+            // const now = new Date();
+            // const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            // const expirationDate = product.expirationDate
+            // const expDate = new Date(expirationDate.getFullYear(), expirationDate.getMonth(), expirationDate.getDate());
 
             if (!product || !product.user) {
                 console.log('Skipping product - not found or no user:', product?._id);

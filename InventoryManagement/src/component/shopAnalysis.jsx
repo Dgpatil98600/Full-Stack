@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import axiosInstance from '../utils/axios';
+import { Link } from 'react-router-dom';
 
 const ShopAnalysis = () => {
   const [data, setData] = useState(null);
@@ -84,7 +85,10 @@ const ShopAnalysis = () => {
         transition={{ duration: 0.5 }}
         className="space-y-6"
       >
-        <h1 className="text-3xl font-bold text-gray-800">Shop Analysis</h1>
+        <Link to="/dashboard" className="text-blue-500 hover:underline">
+          <button className="bg-gray-600 text-white px-2 py-1 rounded hover:bg-gray-300">← Back to Dashboard</button>
+        </Link>
+        <h1 className="text-3xl font-bold text-gray-800 text-center">Shop Analysis</h1>
 
 
         {data && (

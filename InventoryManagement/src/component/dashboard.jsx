@@ -35,58 +35,71 @@ const Dashboard = () => {
   };
 
   return (
-    <div className='bg-gradient-to-br from-slate-700 to-slate-500 min-h-screen p-4 flex flex-col items-center'>
-      <div className="w-full flex justify-between items-center mb-4">
-        <span
-          className="cursor-pointer text-3xl"
-          title="Profile"
-          onClick={() => navigate('/profile')}
-        >
-          <i className="ri-account-circle-line text-white"></i>
-        </span>
-        <span
-          className="cursor-pointer text-3xl"
-          title="Notifications"
-          onClick={() => navigate('/notifications')}
-        >
-          🔔
-        </span>
+    <div className='flex h-screen w-screen bg-gradient-to-br from-slate-700 to-slate-500 overflow-hidden'>
+      
+      {/* Main Dashboard Area */}
+      <div className="flex-1 overflow-y-auto p-4 flex flex-col items-center">
+        
+        {/* Header */}
+        <div className="w-full flex justify-between items-center mb-4">
+          <span
+            className="cursor-pointer text-3xl"
+            title="Profile"
+            onClick={() => navigate('/profile')}
+          >
+            <i className="ri-account-circle-line text-white"></i>
+          </span>
+          <span
+            className="cursor-pointer text-3xl"
+            title="Notifications"
+            onClick={() => navigate('/notifications')}
+          >
+            🔔
+          </span>
+        </div>
+
+        {/* Grid Container */}
+        <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10 transition-all duration-300">
+          <Card title="Bill Generator" image="https://phppot.com/wp-content/uploads/2021/01/ecommerce-purchase-invoice-pdf-output.jpg" />
+          <Card title="Manage Products" image="https://phppot.com/wp-content/uploads/2021/01/ecommerce-purchase-invoice-pdf-output.jpg" />
+          <Card title="Your Bills" image="https://phppot.com/wp-content/uploads/2021/01/ecommerce-purchase-invoice-pdf-output.jpg" />
+          <Card title="Product Analysis" image="https://phppot.com/wp-content/uploads/2021/01/ecommerce-purchase-invoice-pdf-output.jpg" />
+          <Card title="Shop Analysis" image="https://phppot.com/wp-content/uploads/2021/01/ecommerce-purchase-invoice-pdf-output.jpg" />
+        </div>
+
+        {/* AI Button */}
+        <div className="w-full flex justify-end mt-8 pr-4">
+          <button
+            className='bg-green-500 text-white px-4 py-2 rounded-xl shadow-md'
+            onClick={() => {
+              // 🚀 FIX: Reset the width to default (400) every time we open the panel
+              if (!chatPanel) {
+                setChatWidth(400); 
+              }
+              setChatPanel(!chatPanel);
+            }}
+          >
+            {chatPanel ? 'Close AI Suggestion' : 'Get Suggestion with AI'}
+          </button>
+        </div>
       </div>
 
-      <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10 transition-all duration-300"
-        style={{ marginRight: chatPanel ? `${chatWidth}px` : 0 }}>
-        <Card title="Bill Generator" image="https://phppot.com/wp-content/uploads/2021/01/ecommerce-purchase-invoice-pdf-output.jpg" />
-        <Card title="Manage Products" image="https://phppot.com/wp-content/uploads/2021/01/ecommerce-purchase-invoice-pdf-output.jpg" />
-        <Card title="Your Bills" image="https://phppot.com/wp-content/uploads/2021/01/ecommerce-purchase-invoice-pdf-output.jpg" />
-        <Card title="Product Analysis" image="https://phppot.com/wp-content/uploads/2021/01/ecommerce-purchase-invoice-pdf-output.jpg" />
-        <Card title="Shop Analysis" image="https://phppot.com/wp-content/uploads/2021/01/ecommerce-purchase-invoice-pdf-output.jpg" />
-      </div>
-
-      <div className="w-full flex justify-end mt-8 pr-4">
-        <button
-          className='bg-green-500 text-white px-4 py-2 rounded-xl shadow-md'
-          onClick={() => setChatPanel(!chatPanel)}
-        >
-          Get Suggestion with AI
-        </button>
-      </div>
-
-      {/* Chat Panel - Right resizeable sidebar */}
+      {/* Chat Panel */}
       {chatPanel && (
         <div
-          className='fixed top-0 right-0 h-full bg-white shadow-xl rounded-l-lg overflow-hidden z-50 flex'
-          style={{ width: `${chatWidth}px`, minWidth: 300, maxWidth: 700, transition: 'width 0.2s'}}
+          className='relative h-full bg-white shadow-xl flex-shrink-0 flex'
+          style={{ width: `${chatWidth}px`, minWidth: 300, maxWidth: 700 }}
         >
           {/* Drag handle for resizing */}
           <div
             ref={resizerRef}
             className="w-2 cursor-col-resize hover:bg-gray-300 transition"
             onMouseDown={startResize}
-            style={{ position: 'absolute', left: 0, top: 0, bottom: 0, zIndex: 10, background: 'transparent'}}
+            style={{ position: 'absolute', left: 0, top: 0, bottom: 0, zIndex: 10, background: 'transparent' }}
             title="Resize panel"
           />
 
-          <div className="h-full w-full">
+          <div className="h-full w-full pl-2">
             <Chat setChatPanel={setChatPanel} />
           </div>
         </div>
